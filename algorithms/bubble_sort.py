@@ -1,4 +1,6 @@
 
+import time
+
 def bubble_sort_up(array):
     "Algorithms bubble sort up O(n^2)"
     change = True
@@ -25,23 +27,26 @@ def bubble_sort_down(array):
 def unittest():
     print("running unittest...")
     try:
-        #test sort down
-        a = [x for x in range(0,10)]
-        bubble_sort_down(a)
-        k = 0
-        while k<(len(a)-1):
-            if a[k] < a[k+1]:
-                print("Test failed.Sort down didn't work.")
-                break
-            k +=1
-        #test sort up
-        k = 0
+        # test sort down
+        a = [x for x in range(1000, 0,-1)]
         bubble_sort_up(a)
+        k = 0
         while k < (len(a) - 1):
             if a[k] > a[k + 1]:
+                print("Test failed.Sort up didn't work.")
+                break
+            k += 1
+        # test sort up
+        k = 0
+        start = time.time()
+        bubble_sort_down(a)
+        end = time.time()
+        while k < (len(a) - 1):
+            if a[k] < a[k + 1]:
                 print("Test failed.Sort down didn't work.")
                 break
             k += 1
+        print('sorting 1000 elements(worst case):', str(end - start))
     except:
         print('Test failed. Other errors in code')
     print("finish...")
