@@ -1,19 +1,20 @@
 import time
 
 def shell(a):
-    b = len(a)
-    k = int(b / 2)
-    while k > 0:
-        for i in range(1,b-k,1):
-            j = i
-            while (j>=1) and (a[j]>a[j+k]):
-                a[j],a[j+k] = a[j+k],a[j]
-                j -= 1
-        k = int(k / 2)
-    #bad variant
-    #TODO: implemented correct algorithm
-    save = a.pop(0)
-    a.append(save)
+    "Algorithm shell sort "
+    if len(a) <= 4000:
+        d = 701 #with this value time complexity = O(N(logN)^2)
+    else:
+        d = int(len(a) / 2)
+    while d > 0:
+        k = True
+        while k:
+            k = False
+            for i in range(0,len(a)-d,1):
+                if a[i] > a[i+d]:
+                    a[i],a[i+d] = a[i+d],a[i]
+                    k = True
+        d = int(d / 2)
 
 def unittest():
     print("running unittest...")
